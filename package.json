@@ -1,34 +1,16 @@
-const express = require('express');
-const app = express();
-const greeting = process.env.GREETING || 'Hello from your deployed app!';
-// Let Express read JSON data from requests
-app.use(express.json());
-app.get('/api/message', (req, res) => {
-  res.json({ message: greeting });
-});
-// GET route from Practice 9
-
-
-// POST route from Practice 10
-app.post('/api/notes', (req, res) => {
-  const { name, note } = req.body;
-
-  if (!name || !note) {
-    return res.status(400).json({ error: 'Both name and note are required.' });
+{
+  "name": "practice-9",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
   }
+}
 
-  res.status(201).json({
-    message: 'Note received!',
-    data: { name, note }
-  });
-});
-
-console.log('POST route is loaded');
-app.get('/', (req, res) => {
-  res.send('My app is running');
-});
-const PORT = process.env.PORT || 3001;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
