@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-
+const greeting = process.env.GREETING || 'Hello from your deployed app!';
 // Let Express read JSON data from requests
 app.use(express.json());
-
-// GET route from Practice 9
 app.get('/api/message', (req, res) => {
-  res.json({ message: 'Hello from your very first API!' });
+  res.json({ message: greeting });
 });
+// GET route from Practice 9
+
 
 // POST route from Practice 10
 app.post('/api/notes', (req, res) => {
@@ -27,6 +27,8 @@ console.log('POST route is loaded');
 app.get('/', (req, res) => {
   res.send('My app is running');
 });
-app.listen(3001, () => {
-  console.log('Server is running on http://localhost:3001');
+const PORT = process.env.PORT || 3001;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
